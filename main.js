@@ -19,8 +19,8 @@ let themaLayer = {
 // Hintergrundlayer
 let layerControl = L.control.layers({
     "Openstreetmap": L.tileLayer.provider("OpenStreetMap.Mapnik"),
-    "Esri WorldTopoMap": L.tileLayer.provider("Esri.WorldTopoMap"),
-    "Esri WorldImagery": L.tileLayer.provider("Esri.WorldImagery").addTo(map)
+    "Esri WorldTopoMap": L.tileLayer.provider("Esri.WorldTopoMap").addTo(map),
+    "Esri WorldImagery": L.tileLayer.provider("Esri.WorldImagery")
 }, {
     "Wettervorhersage MET Norway": themaLayer.forecast
 }).addTo(map);
@@ -37,5 +37,10 @@ async function showForecast(url) {
 
     // aktuelles Wetter und Wettervorhersage implementieren
     console.log(jsondata);
+    L.geoJSON(jsondata, {
+        pointToLayer: function (feature, latlng) {
+
+        }
+    }).addTo(themaLayer.forecast);
 }
 showForecast("https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=47.267222&lon=11.392778");
