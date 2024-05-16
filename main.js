@@ -109,5 +109,6 @@ async function loadWind(url) {
     document.querySelector("#forecast-date").innerHTML = `
     <strong>(<a href="${url}" target="met.no">Stand ${forecastDate.toLocaleString()}</a>)</strong>
     `;
+
 }
 loadWind("https://geographie.uibk.ac.at/data/ecmwf/data/wind-10u-10v-europe.json")
