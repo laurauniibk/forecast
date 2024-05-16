@@ -72,9 +72,22 @@ async function showForecast(url) {
         }
     }).addTo(themaLayer.forecast);
 }
-showForecast("https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=47.267222&lon=11.392778");
+//showForecast("https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=47.267222&lon=11.392778");
 
 //auf Kartenklick reagieren
 map.on("click", function (evt) {
     showForecast(`https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=${evt.latlng.lat}&lon=${evt.latlng.lng}`);
 });
+
+//Klick auf Innsbruck simulieren
+map.fire("click", {
+    latlng: ibk
+});
+
+// Windkarte
+async function loadWind(url) {
+    const response = await fetch(url);
+    const jsondata = await response.json();
+    console.log(jsondata);
+}
+loadWind("https://geographie.uibk.ac.at/data/ecmwf/data/wind-10u-10v-europe.json")
